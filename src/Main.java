@@ -10,8 +10,8 @@ public class Main {
         ArrayList<String> lines = getFileData("src/input.txt");
         int partOneAnswer = 0;
         //int partTwoAnswer = 0;
-
-        for (int i = 0; i < lines.size(); i++) {
+        int max = lines.size();
+        for (int i = 0; i < max; i++) {
             partOneAnswer += getPartOneNumber(lines.get(i));
             //partTwoAnswer += getPartTwoNumber(lines.get(i));
         }
@@ -30,11 +30,9 @@ public class Main {
                     nums = nums + line.substring(i, i+1);
                 }
             }
-            System.out.println(nums);
         }
 
         int newNum = Integer.parseInt(nums.substring(0, 1) + nums.substring(nums.length() - 1, nums.length()));
-        //int final_num = newNum;
         return newNum;
     }
 
