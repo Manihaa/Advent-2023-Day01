@@ -9,25 +9,28 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<String> lines = getFileData("src/input.txt");
         int partOneAnswer = 0;
-        //int partTwoAnswer = 0;
+        int partTwoAnswer = 0;
         int max = lines.size();
-        for (int i = 0; i < max; i++) {
+
+        for (int i = 0; i < 2; i++) {
             partOneAnswer += getPartOneNumber(lines.get(i));
-            //partTwoAnswer += getPartTwoNumber(lines.get(i));
+            partTwoAnswer += getPartTwoNumber(lines.get(i));
         }
 
-        System.out.println("Part one answer: " + partOneAnswer);
-        //System.out.println("Part two answer: " + partTwoAnswer);
+        //System.out.println("Part one answer: " + partOneAnswer);
+        System.out.println("Part two answer: " + partTwoAnswer);
     }
 
     public static int getPartOneNumber(String line) {
         int len = line.length();
         String nums = "";
+        String str = "";
         String[] digits = {"0","1","2","3","4","5","6","7","8","9"};
         for (int i = 0; i < len; i++){
+            str = line.substring(i, i + 1);
             for (int k = 0; k < digits.length; k++) {
-                if (line.substring(i, i + 1).equals(digits[k])){
-                    nums = nums + line.substring(i, i+1);
+                if (str.equals(digits[k])){
+                    nums = nums + digits[k];
                 }
             }
         }
@@ -37,8 +40,26 @@ public class Main {
     }
 
     public static int getPartTwoNumber(String line) {
-        // do part 2
-        return 0;
+        int len = line.length();
+        String nums = "";
+        String str = "";
+        String[] digits = {"0","1","2","3","4","5","6","7","8","9"};
+        String[] letDigits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        for (int i = 0; i < len; i++){
+            str = line.substring(i, i + 1);
+            for (int k = 0; k < digits.length; k++) {
+
+                if (str.equals(digits[k])){
+                    nums = nums + digits[k];
+                }else if (line.substring(i).contains(letDigits[k])){
+                    nums = nums + digits[k];
+                }
+            }
+        }
+
+        int newNum = Integer.parseInt(nums.substring(0, 1) + nums.substring(nums.length() - 1, nums.length()));
+        System.out.println(nums + "\n" + newNum);
+        return newNum;
     }
 
     public static ArrayList<String> getFileData(String fileName) {
